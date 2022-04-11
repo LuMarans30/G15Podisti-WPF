@@ -1,5 +1,4 @@
 # G15PodistiWPF
-Multithreaded race between stickmans using Parallel Class. 
- (max 6 runners)
- 
- After the race has finished the program displays the ranking (top 3 runners).
+Multithreaded race between stickmans using Parallel class. (made in WPF)
+(Max 6 runners)
+After the race the program displays the ranking with the relative measured times.
