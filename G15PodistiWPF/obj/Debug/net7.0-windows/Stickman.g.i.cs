@@ -61,7 +61,7 @@ namespace G15PodistiWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/G15PodistiWPF;component/stickman.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/G15PodistiWPF;V1.0.0.0;component/stickman.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Stickman.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
