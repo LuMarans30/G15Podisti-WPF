@@ -25,6 +25,7 @@ namespace G15PodistiWPF
     {
 
         private List<Podista> podisti = new();
+        int pettorale=1;
         string messaggio = "";
         int i = 0,j, k=0;
 
@@ -33,6 +34,7 @@ namespace G15PodistiWPF
             InitializeComponent();
             this.Title = "G15Podisti";
             btnAggiungi.IsEnabled = false;
+            txtNome.Focus();
         }
 
         private void btnAggiungi_Click(object sender, RoutedEventArgs e)
@@ -42,25 +44,16 @@ namespace G15PodistiWPF
                 if (podisti.Count == 6)
                 {
                     txtNome.IsEnabled = false;
-                    txtPettorale.IsEnabled = false;
-                    txtPettorale.TextChanged -= txtPettorale_TextChanged;
                     txtNome.TextChanged -= txtNome_TextChanged;
                     btnAggiungi.IsEnabled = false;
                     throw new Exception("Hai raggiunto il numero massimo di podisti");
                 }
 
                 string nome = txtNome.Text;
-                int pettorale;
-
-                if (!int.TryParse(txtPettorale.Text, out pettorale))
-                {
-                    throw new Exception("Il pettorale inserito non è un numero");
-                }
-
-                if (podisti.Any(p => p.getPettorale() == pettorale))
-                    throw new Exception("Il pettorale è stato già inserito in precedenza");
 
                 podisti.Add(new Podista(nome, pettorale));
+
+                pettorale++;
 
                 MediaElement mediaelement = podisti[i].GetStickman().podista;
 
@@ -113,7 +106,6 @@ namespace G15PodistiWPF
             }
 
             txtNome.Clear();
-            txtPettorale.Clear();
             txtNome.Focus();
         }
 
@@ -138,8 +130,6 @@ namespace G15PodistiWPF
                 
                 if (podisti.Count == 0) throw new Exception("Prima di iniziare la gara inserire qualche podista");
                 txtNome.IsEnabled = false;
-                txtPettorale.IsEnabled = false;
-                txtPettorale.TextChanged -= txtPettorale_TextChanged;
                 txtNome.TextChanged -= txtNome_TextChanged;
                 btnAggiungi.IsEnabled = false;
 
@@ -206,6 +196,14 @@ namespace G15PodistiWPF
 
         }
 
+        private void txtNome_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                btnAggiungi_Click(sender,e);
+            }
+        }
+
         private void Da_Completed(object? sender, EventArgs e)
         {
             //string source = "../../../Resources/stickman-finish.png";
@@ -240,14 +238,8 @@ namespace G15PodistiWPF
 
         private void txtNome_TextChanged(object sender, TextChangedEventArgs e)
         {
-            btnAggiungi.IsEnabled = (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrEmpty(txtPettorale.Text))
-                ? false : true;
+            btnAggiungi.IsEnabled = string.IsNullOrEmpty(txtNome.Text) ? false : true;
         }
 
-        private void txtPettorale_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            btnAggiungi.IsEnabled = (string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrEmpty(txtPettorale.Text))
-                ? false : true;
-        }
     }
 }

@@ -11,8 +11,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Nome del podista:" HorizontalAlignment="Left" Margin="6,19,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="114"/>
-        <Label Content="Numero pettorale:" HorizontalAlignment="Left" Margin="5,50,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="115"/>
-        <Button x:Name="btnAggiungi" Content="Aggiungi nuovo podista" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="235" Foreground="Black" Background="#FFDDDDDD" FontWeight="Normal" Height="20" Click="btnAggiungi_Click">
+        <Button x:Name="btnAggiungi" Content="Aggiungi nuovo podista" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="236" Foreground="Black" Background="#FFDDDDDD" FontWeight="Normal" Height="20" Click="btnAggiungi_Click">
             <Button.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -20,7 +19,7 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Margin="125,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18" TextChanged="txtNome_TextChanged">
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Margin="125,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18" TextChanged="txtNome_TextChanged" KeyDown="txtNome_KeyDown">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -28,15 +27,7 @@
                 </LinearGradientBrush>
             </TextBox.BorderBrush>
         </TextBox>
-        <TextBox x:Name="txtPettorale" HorizontalAlignment="Left" Margin="125,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18" TextChanged="txtPettorale_TextChanged">
-            <TextBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.BorderBrush>
-        </TextBox>
-        <Button x:Name="btnStart" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="98" Width="196" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnStart_Click">
+        <Button x:Name="btnStart" Content="" HorizontalAlignment="Left" Margin="20,142,0,0" VerticalAlignment="Top" Height="196" Width="216" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnStart_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/start-button.png" Stretch="Uniform" TileMode="None"/>
             </Button.Background>
@@ -73,7 +64,6 @@
                 <local:Stickman Margin="45,0,0,0" x:Name="Podista5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Visibility="Hidden"/>
             </Canvas>
         </Grid>
-        <Label Content="(max 6 podisti)" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="110"/>
-        <MediaElement x:Name="cronometro" HorizontalAlignment="Left" Height="100" Margin="78,275,0,0" LoadedBehavior="Manual" VerticalAlignment="Top" Width="100" Source="../../../Resources/cronometro.gif" Visibility="Hidden"/>
+        <Label Content="(max 6 podisti)" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="110"/>
     </Grid>
 </Window>
