@@ -271,7 +271,6 @@ namespace G15PodistiWPF
             durata[2] = terzo.getDurata();
             messaggio += "\n3° Posto: " + nome[2] + " con pettorale " + pettorale[2] + " in " + terzo.getDurata() + " secondi";
 
-            MessageBox.Show(messaggio, "CLASSIFICA");
             Ranking r = new Ranking(nome, pettorale, durata);
             r.Show();
             
