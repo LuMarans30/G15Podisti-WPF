@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:G15PodistiWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="411" Width="771" >
+        Title="Gara podisti" Height="411" Width="771" >
     <Grid Margin="0,0,0,-16">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -64,6 +64,6 @@
                 <local:Stickman Margin="45,0,0,0" x:Name="Podista5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Visibility="Hidden"/>
             </Canvas>
         </Grid>
-        <Label Content="(max 6 podisti)" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label Content="(min 3 e max 6)" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="110"/>
     </Grid>
 </Window>

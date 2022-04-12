@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,18 +21,54 @@ namespace G15PodistiWPF
     /// </summary>
     public partial class Stickman : UserControl
     {
-        private string inizio = "../../../Resources/stickman-running.gif", 
-                         fine = "../../../Resources/stickman-finish.png";
+        private string inizio = "..\\..\\..\\Resources\\stickman-running.gif", 
+                         fine = "..\\..\\..\\Resources\\stickman-finish.png";
+
+        private int durata;
 
         public Stickman()
         {
             InitializeComponent();
+            durata = 0;
+            setSource("inizio");
         }
         
-        public Stickman(string nome)
+        public Stickman(string nome):this()
+        {
+            this.Name = nome;
+        }
+
+        public Stickman(string nome, int durata):this()
         {
             InitializeComponent();
             this.Name = nome;
+            this.durata = durata;
+        }
+
+        public void setDurata(int durata)
+        {
+            this.durata = durata;
+        }
+        
+        private static string CreateAbsolutePathTo(string mediaFile)
+        {
+            string path = Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName,  mediaFile);
+            return path;
+        }
+
+        public void setNome(string nome)
+        {
+            this.Name = nome;
+        }
+
+        public string getNome()
+        {
+            return this.Name;
+        }
+
+        public int getDurata()
+        {
+            return durata;
         }
         
         private void podista_MediaEnded(object sender, RoutedEventArgs e)
@@ -39,9 +77,9 @@ namespace G15PodistiWPF
             podista.Play();
         }
 
-        public void setSource(int i)
+        public void setSource(string stringa)
         {
-            podista.Source = new Uri(i == 0 ? inizio : fine, UriKind.Relative);
+            podista.Source = new Uri(stringa == "inizio" ? CreateAbsolutePathTo(inizio) : CreateAbsolutePathTo(fine), UriKind.Absolute);
         }
     }
 }

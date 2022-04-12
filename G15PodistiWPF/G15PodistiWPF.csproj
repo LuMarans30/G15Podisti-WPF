@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <None Remove="pista.png" />
+    <None Remove="podio.jpg" />
+    <None Remove="Resources\pista.png" />
+    <None Remove="Resources\podio.jpg" />
+    <None Remove="Resources\stickman-finish.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,12 +27,26 @@
 
   <ItemGroup>
     <Resource Include="pista.png" />
+    <Resource Include="podio.jpg" />
+    <Resource Include="Resources\pista.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\podio.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\start-button.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\stickman-finish.png" />
     <Resource Include="Resources\stickman-running.gif">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Ranking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
 </Project>

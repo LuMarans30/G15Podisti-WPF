@@ -14,7 +14,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <MediaElement x:Name="podista" LoadedBehavior="Manual" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="..\..\..\Resources\stickman-running.gif" MediaEnded="podista_MediaEnded" Margin="-2,-2,0,0"/>
+        <!--Souce="..\..\..\Resources\stickman-running.gif"-->
+        <MediaElement x:Name="podista" LoadedBehavior="Manual" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  MediaEnded="podista_MediaEnded" Margin="-2,-2,0,0"/>
 
     </Grid>
 </UserControl>

@@ -23,11 +23,12 @@ namespace G15PodistiWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private List<Podista> podisti = new();
-        int pettorale=1;
-        string messaggio = "";
-        int i = 0,j, k=0;
+        private Stickman primo = null;
+        private Stickman secondo = null;
+        private Stickman terzo = null;
+        private int pettorale=1;
+        private int i = 0,j, k=0;
 
         public MainWindow()
         {
@@ -51,6 +52,11 @@ namespace G15PodistiWPF
 
                 string nome = txtNome.Text;
 
+                if (nome == "" || nome.Any(c => !char.IsLetter(c)))   
+                {
+                    throw new Exception("Inserisci un nome valido (caratteri speciali o numeri non ammessi)");
+                }
+                
                 podisti.Add(new Podista(nome, pettorale));
 
                 pettorale++;
@@ -104,14 +110,11 @@ namespace G15PodistiWPF
             {
                 MessageBox.Show(ex.Message, "ERRORE: INPUT NON VALIDO");
             }
-
-            txtNome.Clear();
-            txtNome.Focus();
-        }
-
-        private void Podista0_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
+            finally
+            {
+                txtNome.Clear();
+                txtNome.Focus();
+            }
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -120,15 +123,15 @@ namespace G15PodistiWPF
             {
                 if(k>0)
                 {
-                    Podista0.setSource(0);
-                    Podista1.setSource(0);
-                    Podista2.setSource(0);
-                    Podista3.setSource(0);
-                    Podista4.setSource(0);
-                    Podista5.setSource(0);
+                    Podista0.setSource("inizio");
+                    Podista1.setSource("inizio");
+                    Podista2.setSource("inizio");
+                    Podista3.setSource("inizio");
+                    Podista4.setSource("inizio");
+                    Podista5.setSource("inizio");
                 }
-                
-                if (podisti.Count == 0) throw new Exception("Prima di iniziare la gara inserire qualche podista");
+
+                if (podisti.Count < 3) throw new Exception("Prima di iniziare la gara inserire almeno 3 podisti");
                 txtNome.IsEnabled = false;
                 txtNome.TextChanged -= txtNome_TextChanged;
                 btnAggiungi.IsEnabled = false;
@@ -209,32 +212,72 @@ namespace G15PodistiWPF
             //string source = "../../../Resources/stickman-finish.png";
             AnimationClock? ac = sender as AnimationClock;
             DoubleAnimation? d = ac.Timeline as DoubleAnimation;
-
             Stickman podistaArrivato = (Stickman) gridAnimazioni.FindName(d.Name);
             //podistaArrivato.podista.Source = new Uri(source, UriKind.Relative);
-            podistaArrivato.setSource(1); //new 
+            podistaArrivato.setSource("fine"); //new 
             Thread.Sleep(100);
-            podistaArrivato.podista.Stop();  
+            podistaArrivato.podista.Stop();
 
-            if (j<3) {
-                int numArrivato = podistaArrivato.Name.ElementAt(podistaArrivato.Name.Length-1) - '0';
-                string nome = podisti.ElementAt(numArrivato).getNome();
-                int pettorale = podisti.ElementAt(numArrivato).getPettorale();
-                if(j==0)
-                    messaggio = "1° Posizione: " + nome + " con pettorale " + pettorale  + " in " + d.Duration + " secondi";
-                if(j==1)
-                    messaggio += "\n2° Posizione: " + nome + " con pettorale " + pettorale + " in " + d.Duration + " secondi";
-                if (j == 2)
-                    messaggio += "\n3° Posizione: " + nome + " con pettorale " + pettorale + " in " + d.Duration + " secondi";
+            podistaArrivato.setDurata(Convert.ToInt32(d.Duration.TimeSpan.TotalSeconds));
+
+            if (j == 0)
+            {
+                primo = new Stickman(podistaArrivato.getNome(), podistaArrivato.getDurata());
             }
-
+                
+            if (j == 1)
+            {
+                secondo = new Stickman(podistaArrivato.getNome(), podistaArrivato.getDurata());
+            }
+                
+            if (j == 2)
+            {
+                terzo = new Stickman(podistaArrivato.getNome(), podistaArrivato.getDurata());
+            } 
+            
             if (j==podisti.Count()-1)
             {
-                MessageBox.Show(messaggio);
+                visualizzazione(primo, secondo, terzo);
             }
+
             //stickman.podista.Source = new Uri(source);
             j++;
         }
+
+        private void visualizzazione(Stickman primo, Stickman secondo, Stickman terzo)
+        {
+            string messaggio;
+
+            int[] num = new int[3];
+            int[] pettorale = new int[3];
+            string[] nome = new string[3];
+            int[] durata = new int[3];
+
+            num[0] = primo.Name.ElementAt(primo.Name.Length - 1) - '0';
+            nome[0] = podisti.ElementAt(num[0]).getNome();
+            pettorale[0] = podisti.ElementAt(num[0]).getPettorale();
+            durata[0] = primo.getDurata();
+            messaggio = "1° Posto: " + nome[0] + " con pettorale " + pettorale[0] + " in " + primo.getDurata() + " secondi";
+            
+            num[1] = secondo.Name.ElementAt(secondo.Name.Length - 1) - '0';
+            nome[1] = podisti.ElementAt(num[1]).getNome();
+            pettorale[1] = podisti.ElementAt(num[1]).getPettorale();
+            durata[1] = secondo.getDurata();
+            messaggio += "\n2° Posto: " + nome[1] + " con pettorale " + pettorale[1] + " in " + secondo.getDurata() + " secondi";
+
+            num[2] = terzo.Name.ElementAt(terzo.Name.Length - 1) - '0';
+            nome[2] = podisti.ElementAt(num[2]).getNome();
+            pettorale[2] = podisti.ElementAt(num[2]).getPettorale();
+            durata[2] = terzo.getDurata();
+            messaggio += "\n3° Posto: " + nome[2] + " con pettorale " + pettorale[2] + " in " + terzo.getDurata() + " secondi";
+
+            MessageBox.Show(messaggio, "CLASSIFICA");
+            Ranking r = new Ranking(nome, pettorale, durata);
+            r.Show();
+            
+        }
+
+
 
         private void txtNome_TextChanged(object sender, TextChangedEventArgs e)
         {
