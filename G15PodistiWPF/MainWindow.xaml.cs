@@ -142,7 +142,6 @@ namespace G15PodistiWPF
                 //Inizia la gara dei podisti
                 foreach (Podista p in podisti)
                 {
-                    //gridAnimazioni.RowDefinitions.Add(new RowDefinition());
                     Parallel.Invoke(animazione);
                 }
 
@@ -209,11 +208,9 @@ namespace G15PodistiWPF
 
         private void Da_Completed(object? sender, EventArgs e)
         {
-            //string source = "../../../Resources/stickman-finish.png";
             AnimationClock? ac = sender as AnimationClock;
             DoubleAnimation? d = ac.Timeline as DoubleAnimation;
             Stickman podistaArrivato = (Stickman) gridAnimazioni.FindName(d.Name);
-            //podistaArrivato.podista.Source = new Uri(source, UriKind.Relative);
             podistaArrivato.setSource("fine"); //new 
             Thread.Sleep(100);
             podistaArrivato.podista.Stop();
@@ -239,8 +236,6 @@ namespace G15PodistiWPF
             {
                 visualizzazione(primo, secondo, terzo);
             }
-
-            //stickman.podista.Source = new Uri(source);
             j++;
         }
 

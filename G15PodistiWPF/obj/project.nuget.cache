@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6XOR6uhFEL+WimZAf4VzTozRRVG7cI6fTHI6Vsc2x5ylFxhUDcY+2W+3rYWHNbN4O5H8PExGY/XSp3hDhcJ7cA==",
+  "dgSpecHash": "H26n39izsDhSL7yF+BZXDJu8IoqlTkIrjSTFtVoeTNJA8Mr3iQSGQ0iSYtHYsRN6kIX13le8myCjUjaBJ/zdoA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Andre\\source\\repos\\G15PodistiWPF\\G15PodistiWPF\\G15PodistiWPF.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Andre\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
   "logs": []
 }
