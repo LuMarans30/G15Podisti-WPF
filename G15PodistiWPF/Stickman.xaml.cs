@@ -16,13 +16,10 @@ using System.Windows.Navigation;
 
 namespace G15PodistiWPF
 {
-    /// <summary>
-    /// Logica di interazione per Stickman.xaml
-    /// </summary>
     public partial class Stickman : UserControl
     {
-        private string inizio = "..\\..\\..\\Resources\\stickman-running.gif", 
-                         fine = "..\\..\\..\\Resources\\stickman-finish.png";
+        private string inizio = "../../Resources/stickman-running.gif", 
+                         fine = "../../Resources/stickman-finish.png";
 
         private int durata;
 
@@ -49,12 +46,6 @@ namespace G15PodistiWPF
         {
             this.durata = durata;
         }
-        
-        private static string CreateAbsolutePathTo(string mediaFile)
-        {
-            string path = Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName,  mediaFile);
-            return path;
-        }
 
         public void setNome(string nome)
         {
@@ -79,7 +70,7 @@ namespace G15PodistiWPF
 
         public void setSource(string stringa)
         {
-            podista.Source = new Uri(stringa == "inizio" ? CreateAbsolutePathTo(inizio) : CreateAbsolutePathTo(fine), UriKind.Absolute);
+            podista.Source = new Uri(stringa == "inizio" ? inizio : fine, UriKind.Relative);
         }
     }
 }

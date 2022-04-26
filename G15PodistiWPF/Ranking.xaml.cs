@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace G15PodistiWPF
 {
-    /// <summary>
-    /// Logica di interazione per Ranking.xaml
-    /// </summary>
     public partial class Ranking 
     {
 

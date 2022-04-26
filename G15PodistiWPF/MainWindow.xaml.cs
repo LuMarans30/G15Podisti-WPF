@@ -18,12 +18,9 @@ using System.Diagnostics;
 
 namespace G15PodistiWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Podista> podisti = new();
+        private List<Podista> podisti = new List<Podista>();
         private Stickman primo = null;
         private Stickman secondo = null;
         private Stickman terzo = null;
@@ -155,7 +152,7 @@ namespace G15PodistiWPF
 
         private void animazione()
         {
-            Random rnd = new Random();
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
             var da = new DoubleAnimation(0, 370, TimeSpan.FromSeconds(rnd.Next(7,12)));
             da.AccelerationRatio = rnd.NextDouble();
             da.Completed += Da_Completed;
@@ -206,11 +203,13 @@ namespace G15PodistiWPF
             }
         }
 
-        private void Da_Completed(object? sender, EventArgs e)
+        private void Da_Completed(object sender, EventArgs e)
         {
-            AnimationClock? ac = sender as AnimationClock;
-            DoubleAnimation? d = ac.Timeline as DoubleAnimation;
+            //string source = "../../../Resources/stickman-finish.png";
+            AnimationClock ac = sender as AnimationClock;
+            DoubleAnimation d = ac.Timeline as DoubleAnimation;
             Stickman podistaArrivato = (Stickman) gridAnimazioni.FindName(d.Name);
+            //podistaArrivato.podista.Source = new Uri(source, UriKind.Relative);
             podistaArrivato.setSource("fine"); //new 
             Thread.Sleep(100);
             podistaArrivato.podista.Stop();
@@ -236,6 +235,7 @@ namespace G15PodistiWPF
             {
                 visualizzazione(primo, secondo, terzo);
             }
+
             j++;
         }
 
