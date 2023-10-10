@@ -6,9 +6,9 @@ This project simulates an exciting stickman race using multithreading in a WPF (
 
 ## Features
 
-- Realistic stickman animations.
+- Basic stickman animations.
 - Multithreading with the Parallel class for a thrilling race experience.
-- Accurate time measurement for each runner.
+- Time measurement for each runner.
 - Display of the final race ranking.
 
 ## Installation
