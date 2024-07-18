@@ -2,12 +2,12 @@
 
 ![Race preview](https://user-images.githubusercontent.com/68614754/163020153-b6b56d27-14de-479d-8a78-156e2a453802.jpg)
 
-This project simulates an exciting stickman race using multithreading in a WPF (Windows Presentation Foundation) application. You can have up to six runners participating in this race simultaneously.
+This school project simulates a stickman race using multithreading in a WPF (Windows Presentation Foundation) application. You can have up to six runners participating in this race simultaneously.
 
 ## Features
 
 - Basic stickman animations.
-- Multithreading with the Parallel class for a thrilling race experience.
+- Multithreading with the Parallel class.
 - Time measurement for each runner.
 - Display of the final race ranking.
 
